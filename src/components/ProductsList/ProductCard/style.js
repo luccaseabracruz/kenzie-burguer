@@ -20,11 +20,19 @@ export const StyledCard = styled.li`
         padding: 1.375rem;
     }
 
+    .productInfo h2{
+        font-size: 1rem;
+    }
+
     .price{
         font-family: "Inter", sans-serif;
-        font-size: 14px;
+        font-size: 1rem;
         font-weight: 600;
-        line-height: 24px;
+
         color: var(--color-primary)
+    }
+
+    @media(min-width: 1024px){
+        min-width: 14.5rem;
     }
 `

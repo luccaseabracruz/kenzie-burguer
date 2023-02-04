@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledContainer = styled.div`
+export const StyledContainer = styled.form`
     padding: .625rem;
     border: 2px solid var(--grey-20);
     border-radius: 8px;

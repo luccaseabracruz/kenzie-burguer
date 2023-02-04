@@ -2,6 +2,7 @@
 
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -36,5 +37,23 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+
+
+
+
+/* Complements */
+
+@media(min-width: 1024px){
+  main{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 90%;
+    max-width: 80rem;
+    margin: 0 auto;
+
   }
 }

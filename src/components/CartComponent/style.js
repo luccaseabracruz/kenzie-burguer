@@ -4,6 +4,7 @@ export const StyledCartContainer = styled.div`
     margin: 1rem;
     border-radius: 5px;
     overflow: hidden;
+    min-width: 23.5rem;
 
 
     .cartHeader{
@@ -45,5 +46,18 @@ export const StyledCartContainer = styled.div`
     .itensContainer{
         border-bottom: 2px solid var(--grey-50);
         margin-bottom: 1rem;
+    }
+
+    @media(min-width: 500px){
+        width: 90%;
+        margin: 1rem auto;
+    }
+
+    @media(min-width: 1024px){
+        width: 55%;
+        min-width: 25rem;
+        margin-top: 3rem;
+        position: sticky;
+        top: 2rem;
     }
 `

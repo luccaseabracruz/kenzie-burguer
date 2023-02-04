@@ -29,14 +29,13 @@ export const Reset = createGlobalStyle`
 
 
         /* complements */
-        html{
-            min-height: 100vh;
-        }
+        font-family: 'Inter', sans-serif;
+        list-style: none;
 
-        body{
-            font-family: 'Inter', sans-serif;
-            font-size: .875px;
-            font-weight: 400;
-        }
+        
     }
-`
+    
+    html{
+        min-height: 100vh;
+    }
+    `

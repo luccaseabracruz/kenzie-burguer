@@ -70,4 +70,5 @@ export const StyledCartCard = styled.li`
         color: #fff;
         background-color: var(--color-secondary)
     }
+
 `

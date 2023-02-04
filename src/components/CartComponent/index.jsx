@@ -2,17 +2,9 @@ import CartCard from "./CartCard";
 import { StyledCartContainer } from "./style";
 import TotalValue from "./TotalValue";
 
-export default function CartComponent({
-  currentSale,
-  removeFromCart,
-  carTotal,
-  removeAllFromCart
-}) {
-  const treatedPrice = Number(carTotal)
-    .toFixed(2)
-    .toString()
-    .split(".")
-    .join(",");
+export default function CartComponent({ currentSale, removeFromCart, carTotal, removeAllFromCart }) {
+  
+  const treatedPrice = Number(carTotal).toFixed(2).toString().split(".").join(",")
 
   return (
     <StyledCartContainer>

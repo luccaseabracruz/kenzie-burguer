@@ -1,16 +1,31 @@
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import CartComponent from "./components/CartComponent";
 import Header from "./components/Header";
 import ProductsList from "./components/ProductsList";
+import SearchTitle from "./components/SearchTitle";
 import { api } from "./services/api";
 
 function App() {
 
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
+  const [search, setSearch] = useState("")
   const [currentSale, setCurrentSale] = useState(getCartFromLocalStorage())
-  const [carTotal, setCarTotal] = useState(0);
+  const [carTotal, setCarTotal] = useState(0)
+
+  
+  useEffect(()=>{
+    const searchProduct = products.filter((product) => {
+      return search === "" ? false : (product.name.toLowerCase()).includes(search.toLowerCase())
+    })
+    
+    setFilteredProducts(searchProduct)
+
+  }, [search])
+
 
   useEffect(()=>{
     async function loadProducts() {
@@ -30,7 +45,7 @@ function App() {
 
   useEffect(() => {
     totalValue()
-    setOnLocalStorage()
+    setCartOnLocalStorage()
 
   }, [currentSale])
   
@@ -39,14 +54,16 @@ function App() {
   function addToCart(product){
     if(!currentSale.some(item => item.id === product.id)){
       setCurrentSale([...currentSale, {...product, uuid: crypto.randomUUID()}])
+      toast.success("Produto adicionado")
     } else {
-      console.log("Esse item já existe") //mudaaaaarrr para toast
+      toast.error("Produto já selecionado", )
     }
     
   }
 
   function removeFromCart(event){
     setCurrentSale(currentSale.filter(product=> product.uuid !== event.target.id))
+    toast.success("Produto removido")
   }
 
   function totalValue() {
@@ -59,9 +76,10 @@ function App() {
 
   function removeAllFromCart() {
     setCurrentSale([])
+    toast.success("Carrinho limpo")
   }
 
-  function setOnLocalStorage(){
+  function setCartOnLocalStorage(){
     localStorage.setItem("@BK: cart", JSON.stringify(currentSale))
   }
   function getCartFromLocalStorage(){
@@ -76,18 +94,32 @@ function App() {
   }
 
 
-
   return (
     <div className="App">
 
-      <Header/>
+      <Header setSearch={setSearch}/>
+      
+      {filteredProducts.length > 0 && <SearchTitle search={search} setFilteredProducts={setFilteredProducts}/>}
 
       <main>
-        <ProductsList products={products} addToCart={addToCart} />
+        <ProductsList products={products} addToCart={addToCart} filteredProducts={filteredProducts}/>
 
         <CartComponent currentSale={currentSale} removeFromCart={removeFromCart} carTotal={carTotal} removeAllFromCart={removeAllFromCart}/>        
 
       </main>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       
     </div>
   );

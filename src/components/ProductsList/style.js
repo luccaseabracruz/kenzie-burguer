@@ -9,4 +9,21 @@ export const StyledProductsContainer = styled.ul`
 
     overflow-x: scroll;
 
+    @media(min-width: 500px){
+        width: 90%;
+        margin: 2rem auto;
+        padding: 0;
+    }
+
+    @media(min-width: 1024px){
+
+        margin-top: 3rem;
+        overflow-x: none;
+        flex-wrap: wrap;
+
+
+
+    }
+
 `
+
