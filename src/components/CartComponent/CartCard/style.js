@@ -9,7 +9,6 @@ export const StyledCartCard = styled.li`
 
     position: relative;
 
-
     .imgContainer{
         background-color: var(--grey-0);
         width: 5rem;
